@@ -1,16 +1,374 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>我的第一个网站</title>
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杨梦凡 | 8年资深品牌策划作品集</title>
+    <style>
+        /* CSS Reset & Variables */
+        :root {
+            --bg-dark: #050505;
+            --card-dark: #121212;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --accent-color: #d4af37; /* 钛金质感强调色 */
+            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            text-transform: uppercase;
+        }
+
+        .section-title span {
+            display: block;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+            letter-spacing: 4px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(5, 5, 5, 0.6), rgba(5, 5, 5, 0.9)), url('https://images.unsplash.com/photo-1546484396-fb3fade47ea1?auto=format&fit=crop&q=80&w=2000') center/cover;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeUp 1s ease forwards;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 3rem;
+            animation: fadeUp 1.2s ease forwards;
+        }
+
+        /* Methodology / Expertise */
+        .expertise {
+            padding: 8rem 5%;
+            background-color: var(--bg-dark);
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .expertise-card {
+            background: var(--card-dark);
+            padding: 3rem 2rem;
+            border-top: 1px solid #333;
+            transition: var(--transition);
+        }
+
+        .expertise-card:hover {
+            border-top-color: var(--text-primary);
+            transform: translateY(-5px);
+        }
+
+        .expertise-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .expertise-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 8rem 5%;
+            background: #000;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            display: flex;
+            align-items: center;
+            background: var(--card-dark);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .project-card:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .project-image {
+            flex: 1;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-info {
+            flex: 1;
+            padding: 4rem;
+        }
+
+        .project-tags {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .project-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .data-list {
+            list-style: none;
+        }
+
+        .data-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #ddd;
+            font-size: 0.9rem;
+        }
+
+        .data-list li::before {
+            content: "•";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 5%;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+
+        .contact-info h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info p {
+            color: var(--text-secondary);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .project-card, .project-card:nth-child(even) {
+                flex-direction: column;
+            }
+            .hero-title { font-size: 2.5rem; }
+            .project-info { padding: 2rem; }
+        }
+    </style>
+</head>
 <body>
 
-<h1>你好，世界！</h1>
+    <nav>
+        <div class="logo">YANG MENGFAN</div>
+        <div class="nav-links">
+            <a href="#expertise">核心方法论</a>
+            <a href="#portfolio">精选专案</a>
+            <a href="#contact">联系我</a>
+        </div>
+    </nav>
 
-<p>这是我部署在 Cloudflare Pages 的第一个网站。</p>
+    <section class="hero">
+        <h1 class="hero-title">重塑品牌张力</h1>
+        <p class="hero-subtitle">8年深耕硬核科技与户外美学，以GTM及全域整合营销（IMC）驱动品牌高溢价增长，定义光影与探索的边界。</p>
+    </section>
+
+    <section id="expertise" class="expertise">
+        <h2 class="section-title">核心驱动力<span>CORE METHODOLOGY</span></h2>
+        <div class="grid-3">
+            <div class="expertise-card">
+                <h3>GTM 爆款操盘策略</h3>
+                <p>构建从0到1的新品上市路径。贯穿产品定义、核心买点挖掘、目标人群圈层渗透，实现首发即爆发的势能跨越。</p>
+            </div>
+            <div class="expertise-card">
+                <h3>IMC 整合营销传播</h3>
+                <p>基于“高频覆盖+深度沟通”逻辑，统筹公关、社交媒体、KOL矩阵与跨界联名，打造一致性的高势能品牌质感。</p>
+            </div>
+            <div class="expertise-card">
+                <h3>品牌全生命周期运营</h3>
+                <p>打破流量焦虑，沉淀品牌资产。从视觉体系重塑到服务体验迭代（如：终身质保策略），构建坚不可摧的品牌护城河。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <h2 class="section-title">精选专案<span>SELECTED PROJECTS</span></h2>
+        <div class="project-grid">
+            
+            <!-- Project 1 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1587391924618-87fbdb04cc8f?auto=format&fit=crop&q=80&w=800" alt="Titanium Gear">
+                </div>
+                <div class="project-info">
+                    <div class="project-tags">旗舰产品 GTM / 材质美学</div>
+                    <h3 class="project-title">【破界】旗舰级钛/锆合金装备上市操盘</h3>
+                    <p class="project-desc">为高端战术EDC装备打造破圈营销战役。提炼“硬核材质”与“极客精神”的情感共鸣，制定全渠道GTM策略与高品质视觉输出规范。</p>
+                    <ul class="data-list">
+                        <li>主导产品核心视觉海报及高级感文案策划</li>
+                        <li>深挖钛合金/锆合金材质质感，建立硬核户外心智</li>
+                        <li>规范各渠道物料及合规性输出标准</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1525286102454-5858cb123eeb?auto=format&fit=crop&q=80&w=800" alt="Collaboration">
+                </div>
+                <div class="project-info">
+                    <div class="project-tags">跨界营销 / 联名企划</div>
+                    <h3 class="project-title">【势能】头部打火机品牌战略联名营销</h3>
+                    <p class="project-desc">打破原有受众圈层，策划与国际头部打火机品牌（Zippo）的跨界联名项目。以极具话题性的视觉与产品故事，实现品牌年轻化与圈层击穿。</p>
+                    <ul class="data-list">
+                        <li>构建联名整合营销（IMC）逻辑及预算拆解</li>
+                        <li>制定明确的增长导向GTM排期与节奏控制</li>
+                        <li>锁定3个月内达成500万级别营收目标</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&q=80&w=800" alt="Brand Service">
+                </div>
+                <div class="project-info">
+                    <div class="project-tags">品牌升级 / 售后体系建设</div>
+                    <h3 class="project-title">【重塑】品牌核心售后服务体系迭代升级</h3>
+                    <p class="project-desc">品牌力的体现不止于产品，更在于长期主义的承诺。对标行业头部品牌，全面升级产品全维保障体系，重构消费者信任基石。</p>
+                    <ul class="data-list">
+                        <li>重设品牌售后服务条款，优化消费者体验闭环</li>
+                        <li>推动售后政策从“五年质保”向“终身质保”的历史性跨越</li>
+                        <li>统筹全平台物料及说明书合规审查与视觉更新</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="contact-info">
+            <h2>YANG MENGFAN</h2>
+            <p>8年资深品牌策划 / 整合营销操盘手</p>
+            <br>
+            <p style="font-size: 0.8rem; letter-spacing: 2px;">BRAND PLANNER & MARKETING STRATEGIST</p>
+        </div>
+    </footer>
 
 </body>
-
 </html>
